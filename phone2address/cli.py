@@ -26,7 +26,6 @@ def load_data(file):
     while (wb.cell(row=i, column=1).value != None):
         data.append(str(int(wb.cell(row=i, column=1).value)))
         i += 1
-    print(data)
     return data
 
 
@@ -49,7 +48,6 @@ def process(file):
     cur = 1
     for i in data:
         r = get_address(i)
-        print(r)
         if r == False:
             ws.cell(row=cur, column=1).value = 'No a valid number'
         else:
