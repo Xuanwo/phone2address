@@ -12,6 +12,7 @@ Usage:
 from docopt import docopt
 import openpyxl
 import requests
+import os
 
 
 def save_data(data, file):
@@ -47,6 +48,7 @@ def process(file):
     ws = wb.active
     cur = 1
     for i in data:
+        os.wait(0.5)
         r = get_address(i)
         if r == False:
             ws.cell(row=cur, column=1).value = 'No a valid number'
