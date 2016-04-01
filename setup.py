@@ -10,7 +10,7 @@ entry_points = {
 
 setup(
     name="phone2address",
-    version="0.0.3",
+    version="0.0.4",
     url="https://xuanwo.org/",
     author="Xuanwo",
     author_email="xuanwo.cn@gmail.com",

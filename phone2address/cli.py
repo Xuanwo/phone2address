@@ -24,7 +24,7 @@ def save_data(data, file):
 def load_data(file):
     data = []
     wb = openpyxl.load_workbook(file).active
-    i = 2
+    i = 1
     while (wb.cell(row=i, column=1).value != None):
         tmp = wb.cell(row=i, column=1).value
         if type(tmp) == type(""):
@@ -58,17 +58,16 @@ def process(file):
         r = get_address(i)
         if r == False:
             ws.cell(row=cur, column=1).value = 'No a valid number'
-        elif len(r) == 1:
-            ws.cell(row=cur, column=2).value = data[0]
         else:
-            ws.cell(row=cur, column=2).value = data[0]
-            ws.cell(row=cur, column=3).value = data[1]
+            ws.cell(row=cur, column=1).value = i
+            ws.cell(row=cur, column=2).value = r[0]
+            ws.cell(row=cur, column=3).value = r[1]
         cur += 1
     save_data(wb, 'processed.xlsx')
 
 
 def main():
-    arguments = docopt(__doc__, version='0.0.3')
+    arguments = docopt(__doc__, version='0.0.4')
     if arguments['-f']:
         process(arguments['<file>'])
     else:

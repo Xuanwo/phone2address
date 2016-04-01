@@ -1,3 +1,9 @@
+# 0.0.4
+
+## Bug Fix
+
+- Fix error in process that it will use the first two number to overwrite all data.
+
 # 0.0.3
 
 ## Breaking Change
