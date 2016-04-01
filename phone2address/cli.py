@@ -9,6 +9,7 @@ Usage:
     p2a -f <file>
 """
 
+from bs4 import BeautifulSoup
 from docopt import docopt
 import openpyxl
 import requests
@@ -35,15 +36,16 @@ def load_data(file):
 
 
 def get_address(phone):
-    url = 'http://apis.baidu.com/apistore/mobilenumber/mobilenumber?phone=%s' % (phone)
-    header = {
-        'apikey': 'beeabf9176db8aca915f178ced42c709'
-    }
-    r = requests.post(url, headers=header).json()
-    if r['errNum'] != 0:
-        return False
-    else:
-        return r['retData']
+    url = 'http://www.ip138.com:8080/search.asp?action=mobile&mobile=%s' % (phone)
+    r = requests.get(url)
+    r.encoding = 'GBK'
+    soup = BeautifulSoup(r.text, 'html.parser')
+    try:
+        data = soup.find_all('td')[6].text.split('\xa0')
+    except IndexError:
+        data = False
+    print(data)
+    return data
 
 
 def process(file):
@@ -56,16 +58,17 @@ def process(file):
         r = get_address(i)
         if r == False:
             ws.cell(row=cur, column=1).value = 'No a valid number'
+        elif len(r) == 1:
+            ws.cell(row=cur, column=2).value = data[0]
         else:
-            ws.cell(row=cur, column=1).value = r['phone']
-            ws.cell(row=cur, column=2).value = r['province']
-            ws.cell(row=cur, column=3).value = r['city']
-            cur += 1
+            ws.cell(row=cur, column=2).value = data[0]
+            ws.cell(row=cur, column=3).value = data[1]
+        cur += 1
     save_data(wb, 'processed.xlsx')
 
 
 def main():
-    arguments = docopt(__doc__, version='0.0.1')
+    arguments = docopt(__doc__, version='0.0.3')
     if arguments['-f']:
         process(arguments['<file>'])
     else:
