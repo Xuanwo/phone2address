@@ -12,7 +12,7 @@ Usage:
 from docopt import docopt
 import openpyxl
 import requests
-import os
+import time
 
 
 def save_data(data, file):
@@ -25,7 +25,11 @@ def load_data(file):
     wb = openpyxl.load_workbook(file).active
     i = 2
     while (wb.cell(row=i, column=1).value != None):
-        data.append(str(int(wb.cell(row=i, column=1).value)))
+        tmp = wb.cell(row=i, column=1).value
+        if type(tmp) == type(""):
+            data.append(tmp[:-2])
+        else:
+            data.append(str(int(tmp)))
         i += 1
     return data
 
@@ -48,7 +52,7 @@ def process(file):
     ws = wb.active
     cur = 1
     for i in data:
-        os.wait(0.5)
+        time.sleep(0.5)
         r = get_address(i)
         if r == False:
             ws.cell(row=cur, column=1).value = 'No a valid number'
@@ -65,7 +69,7 @@ def main():
     if arguments['-f']:
         process(arguments['<file>'])
     else:
-        r = get_address(arguments['phone'])
+        r = get_address(arguments['<phone>'])
         if r == False:
             print('请输入有效的手机号码')
         else:
