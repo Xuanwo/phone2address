@@ -56,9 +56,7 @@ def process(file):
     for i in data:
         time.sleep(0.5)
         r = get_address(i)
-        if r == False:
-            ws.cell(row=cur, column=1).value = 'No a valid number'
-        else:
+        if r != False:
             ws.cell(row=cur, column=1).value = i
             ws.cell(row=cur, column=2).value = r[0]
             ws.cell(row=cur, column=3).value = r[1]
