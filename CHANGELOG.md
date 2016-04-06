@@ -1,3 +1,9 @@
+# 0.0.5
+
+## Features
+
+- Add support for executable file without python 3.5 env.
+
 # 0.0.4
 
 ## Bug Fix

@@ -10,7 +10,7 @@ entry_points = {
 
 setup(
     name="phone2address",
-    version="0.0.4",
+    version="0.0.5",
     url="https://xuanwo.org/",
     author="Xuanwo",
     author_email="xuanwo.cn@gmail.com",
@@ -36,5 +36,6 @@ setup(
         'Operating System :: Microsoft :: Windows',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
     ],
 )

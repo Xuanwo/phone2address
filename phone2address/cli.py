@@ -65,7 +65,7 @@ def process(file):
 
 
 def main():
-    arguments = docopt(__doc__, version='0.0.4')
+    arguments = docopt(__doc__, version='0.0.5')
     if arguments['-f']:
         process(arguments['<file>'])
     else:
@@ -73,7 +73,7 @@ def main():
         if r == False:
             print('请输入有效的手机号码')
         else:
-            print('您的手机归属地为%s%s' % (r['province'], r['city']))
+            print('您的手机归属地为%s%s' % (r[0], r[1]))
 
 
 if __name__ == '__main__':
