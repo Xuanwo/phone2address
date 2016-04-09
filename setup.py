@@ -24,7 +24,8 @@ setup(
     install_requires=[
         'docopt',
         'openpyxl',
-        'requests'
+        'requests',
+        'bs4'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',

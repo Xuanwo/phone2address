@@ -44,7 +44,7 @@ def get_address(phone):
         data = soup.find_all('td')[6].text.split('\xa0')
     except IndexError:
         data = False
-    print(data)
+    print('%s的归属地为%s' % (phone, data))
     return data
 
 

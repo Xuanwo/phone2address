@@ -3,6 +3,7 @@
 ## Features
 
 - Add support for executable file without python 3.5 env.
+- Add test for get_address and process
 
 # 0.0.4
 
