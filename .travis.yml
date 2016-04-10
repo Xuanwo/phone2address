@@ -13,4 +13,4 @@ install: "python3 setup.py install"
 before_script:
 - pip3 install pytest
 - pip3 install pytest-cov
-script: py.test --cov-report --cov=phone2address
+script: py.test --cov-report term-missing --cov=phone2address
