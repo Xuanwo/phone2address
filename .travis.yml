@@ -8,9 +8,9 @@ python:
   - "3.5"
   - "nightly"
 # command to install dependencies
-install: "python3 setup.py install" 
+install: "python3 setup.py install"
 # command to run tests
 before_script:
 - pip3 install pytest
 - pip3 install pytest-cov
-script: py.test --cov-report term-missing --cov=phone2address
+script: py.test --cov-report term-missing --cov=phone2address tests/
