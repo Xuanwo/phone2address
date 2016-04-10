@@ -2,11 +2,11 @@ from phone2address import cli
 import requests
 import openpyxl
 
-with open('correct_response.html', 'r', encoding='gbk') as f:
+with open('tests/correct_response.html', 'r', encoding='gbk') as f:
     corrent_data = f.readlines()
     f.close()
 
-with open('wrong_response.html', 'r') as f:
+with open('tests/wrong_response.html', 'r') as f:
     wrong_data = f.readlines()
     f.close()
 
@@ -41,7 +41,7 @@ def test_get_address(monkeypatch):
 
 def test_process_xlsx(monkeypatch):
     monkeypatch.setattr('requests.get', mock_request_get)
-    cli.process('test_xlsx.xlsx')
-    source = openpyxl.load_workbook('test_processed.xlsx').active
-    target = openpyxl.load_workbook('processed.xlsx').active
+    cli.process('tests/test_xlsx.xlsx')
+    source = openpyxl.load_workbook('tests/test_processed.xlsx').active
+    target = openpyxl.load_workbook('tests/processed.xlsx').active
     assert read_from_file(source) == read_from_file(target)
