@@ -1,8 +1,5 @@
 language: python
 python:
-#  - "2.6"
-#  - "2.7"
-  - "3.2"
   - "3.3"
   - "3.4"
   - "3.5"
@@ -11,6 +8,6 @@ python:
 install: "python3 setup.py install"
 # command to run tests
 before_script:
-- pip3 install pytest
-- pip3 install pytest-cov
+  - pip3 install pytest
+  - pip3 install pytest-cov
 script: py.test --cov-report term-missing --cov=phone2address tests/
